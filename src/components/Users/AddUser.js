@@ -8,6 +8,7 @@ import classes from "./AddUser.module.css";
 const AddUser = (props) => {
   const enteredAge = useRef();
   const enteredUsername = useRef();
+  const enteredCollegeName = useRef();
   const [error, setError] = useState();
 
   const addUserHandler = (event) => {
@@ -29,9 +30,14 @@ const AddUser = (props) => {
       });
       return;
     }
-    props.onAddUser(enteredUsername.current.value, enteredAge.current.value);
+    props.onAddUser(
+      enteredUsername.current.value,
+      enteredAge.current.value,
+      enteredCollegeName.current.value
+    );
     enteredAge.current.value = "";
     enteredUsername.current.value = "";
+    enteredCollegeName.current.value = "";
   };
 
   const errorHandler = () => {
@@ -53,6 +59,8 @@ const AddUser = (props) => {
           <input id="username" type="text" ref={enteredUsername} />
           <label htmlFor="age">Age (Years)</label>
           <input id="age" type="number" ref={enteredAge} />
+          <label htmlFor="collegename">College Name</label>
+          <input id="collegname" type="text" ref={enteredCollegeName} />
           <Button type="submit">Add User</Button>
         </form>
       </Card>
